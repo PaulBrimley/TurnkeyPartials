@@ -1,0 +1,105 @@
+<?php
+/**
+ * List All Live Events
+ * For Post /event/Event/Create
+ */
+$this->headScript()
+    ->appendFile($this->basePath('/zf2/assets/event/js/event/liveEventSelectCtrl.js'));
+$this->headLink()
+    ->prependStylesheet($this->basePath('/zf2/assets/event/css/selectEvent.css'));
+?>
+<div ng-app="eventPlanner">
+    <div ng-controller="liveEventSelectCtrl">
+        <div class="page greyBackground">
+            <div class="eventHeader">
+                <h2 class="blackText">Select Live Event</h2>
+                <p>Select from the Live Events below to create your Virtual Event.</p>
+            </div>
+            <br/>
+            <div class="contentContainer">
+                <div class="row">
+                    <div ng-show="events.length === 0" id="{{'event' + $index}}" class="col-xs-12 textAlignCenter">
+                        No Live Events Available
+                    </div>
+
+                    <div ng-show="events.length > 0" id="{{'event' + $index}}" class="col-xs-12 col-sm-6 event" ng-repeat="event in events">
+                        <div class="hpanel hgreen">
+                            <div class="panel-body">
+                                <div class="row marginBottomFifteen">
+                                    <div class="col-md-7">
+                                        <div class="eventName">
+                                            {{event.name}}
+                                        </div>
+                                        <div class="eventDateTopic">
+                                            <div class="row marginBottomFive">
+                                                <div class="col-xs-6 col-sm-6 col-md-7">
+                                                    <div class="eventSelectSmallHeader">
+                                                        DATE
+                                                    </div>
+                                                    <div class="eventSelectSmallText">
+                                                        {{event.start | date: 'shortDate'}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-5">
+                                                    <div class="eventSelectSmallHeader">
+                                                        TIME
+                                                    </div>
+                                                    <div class="eventSelectSmallText">
+                                                        {{event.start | date: 'shortTime'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="eventSelectSmallHeader">
+                                                        TOPIC
+                                                    </div>
+                                                    <div class="eventSelectSmallText">
+                                                        {{event.topic}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="{{'eventHostHolder' + $index}}" class="eventHostsHolder">
+                                            <div class="eventHost" ng-repeat="host in event.host">
+                                                <div class="hostImage">
+                                                    <img class="contentImg" src="{{host.imageUrl}}" alt="" />
+                                                </div>
+                                                <div class="hostName marginTopTen">
+                                                    {{host.name}}
+                                                </div>
+                                                <div class="hostRoles eventSelectSmallText">
+                                                    Presentor
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="eventButtons">
+                                            <div class="row marginBottomFive">
+                                                <div class="col-sm-12">
+                                                    <button class="btn brand-button-success eventSelectButton marginTopFive" ng-click="createEvent(event, $index)">Create Event</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- To Detect Bootstrap Breakpoints -->
+<div class="device-xs visible-xs"></div>
+<div class="device-sm visible-sm"></div>
+<div class="device-md visible-md"></div>
+<div class="device-lg visible-lg"></div>
+<!-- -->

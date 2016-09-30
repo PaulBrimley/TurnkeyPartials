@@ -1,0 +1,38 @@
+<div class="directiveHolder">
+	<div class="manageHeader">
+		<h4>Available Facebook Events:</h4>
+		<h4 class="brand-success-text-color" ng-click="createFacebookEvent()()('groupEventList', 'createFacebookEventButton')"><i class="fa fa-plus-square cursorPointer" aria-hidden="true"></i></h4>
+	</div>
+	<hr/>
+	<div ng-show="availableFbEvents.length === 0">
+		No Facebook Events
+	</div>
+	<div ng-show="availableFbEvents.length > 0" ng-repeat="facebookEvent in availableFbEvents">
+		<div class="checkbox checkbox-single brand-checkbox-success modalCheckboxPositionOverride">
+			<input ng-model="facebookEvent.selected" type="checkbox"/>
+	    <label ng-click="facebookEvent.selected = !facebookEvent.selected">{{facebookEvent.name}}</label>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<div class="manageHeader">
+		<h4>Available Facebook Groups:</h4>
+		<h4 class="brand-success-text-color" ng-click="createFacebookGroup()()('groupEventList', 'createFacebookGroupButton')"><i class="fa fa-plus-square cursorPointer" aria-hidden="true"></i></h4>
+	</div>
+	<hr/>
+	<div ng-show="availableFbGroups.length === 0">
+		No Facebook Groups
+	</div>
+	<div ng-show="availableFbGroups.length > 0" ng-repeat="facebookGroup in availableFbGroups">
+		<div class="checkbox checkbox-single brand-checkbox-success modalCheckboxPositionOverride">
+			<input ng-model="facebookGroup.selected" type="checkbox"/>
+	    <label ng-click="facebookGroup.selected = !facebookGroup.selected">{{facebookGroup.name}}</label>
+		</div>
+		<!-- <input ng-model="facebookGroup.selected" type="checkbox"/> -->
+		<!-- <span class="cursorPointer" ng-click="facebookGroup.selected = !facebookGroup.selected">{{facebookGroup.name}}</span> -->
+	</div>
+</div>
+<div class="buttonHolder">
+	<button ng-click="cancel()()()"  class="btn btn-outline brand-button-warn">Close</button>
+	<button ng-click="saveFbGroupsEvents()()('groupEventList', 'save', 'groupEventList')" class="btn brand-button-success">Save</button>
+</div>

@@ -1,0 +1,20 @@
+<div class="directiveHolder">
+	<div class="manageHeader">
+		<h4 class="orangeColor">COMPLIANCE INFRACTION</h4>
+	</div>
+	<div class="instructionText">
+		Your group/event failed validation because it contained the following word(s):
+	</div>
+	<div class="instructionText">
+		<div ng-repeat="word in modalContent.complianceKeywordsThatMatched">- {{word}}</div>
+	</div>
+</div>
+<div class="buttonHolder2">
+	<div>
+		<button ng-click="previous()()(modalContent.next, modalContent.viewName)" class="btn btn-outline brand-button-warn">Privious</button> 
+	</div>
+	<div>
+		<button ng-click="cancel()()()"  class="btn btn-outline brand-button-warn">Close</button>
+		<!-- <button ng-click="next()(modalContent.next, modalContent.viewName)" class="btn brand-button-success">Next</button> -->
+	</div>
+</div>

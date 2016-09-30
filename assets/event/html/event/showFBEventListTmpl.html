@@ -1,0 +1,31 @@
+<div class="directiveHolder">
+	<div class="manageHeader">
+		<h4>Validate Event Instructions:</h4>
+	</div>
+	<hr/>
+	<div class="instructionText">
+		<div ng-bind-html="modalContent.instructionText" class="listTest"></div>
+	</div>
+	<hr/>
+	<div class="manageHeader">
+		<div class="underlineText">Available Facebook Events:</div>
+	</div>
+	<div ng-show="availableFbEvents.length === 0">
+		No Facebook Events
+	</div>
+	<form action="">
+		<div ng-show="availableFbEvents.length > 0" ng-repeat="facebookEvent in availableFbEvents">
+			<input type="radio" ng-model="$parent.fbEventToEdit" ng-value="facebookEvent.id"/>
+			<span class="cursorPointer" ng-click="$parent.fbEventToEdit = facebookEvent.id">{{facebookEvent.name}}</span>
+		</div>
+	</form>
+</div>
+<div class="buttonHolder2">
+	<div>
+		<button ng-click="previous()()(modalContent.next, modalContent.viewName)" class="btn btn-outline brand-button-warn">Previous</button>
+	</div>
+	<div>
+		<button ng-click="cancel()()()"  class="btn btn-outline brand-button-warn">Close</button>
+		<button ng-disabled="!fbEventToEdit" ng-click="validateEvent()()(modalContent.next, modalContent.viewName, fbEventToEdit)" class="btn brand-button-success">Next</button>
+	</div>
+</div>

@@ -1,0 +1,198 @@
+{
+  "success":true,
+  "message":"",
+  "postschedulerPostData":{
+    "categoryId":1,
+    "defaultImageId":236,
+    "priority":1,
+    "postId":1,
+    "postTypeId":2,
+    "productId":23,
+    "posts":{
+      "id":1,
+      "startDate":"2016-09-12 00:00:01",
+      "expirationDate":"2017-09-12 00:00:01",
+      "active":1
+    },
+    "postschedulerPostPlatformData":{
+      "data":[
+        {
+          "frequency":1,
+          "postPlatform":{
+            "platformApplicationId":24,
+            "mediaId":236
+          },
+          "postschedulerPostPlatformTranslationData":{
+            "data":[
+              {
+                "micId":5,
+                "suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"1",
+                "postPlatformTranslation":{
+                  "region":"all_r",
+                  "language":"all_l",
+                  "title":"the title",
+                  "info":"the info"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":2,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":1,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              },
+              {
+                "micId":5,
+                "suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"2",
+                "postPlatformTranslation":{
+                  "region":"US",
+                  "language":"en",
+                  "title":"the title us",
+                  "info":"the info us"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":4,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":3,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "frequency":1,
+          "postPlatform":{
+            "platformApplicationId":23,
+            "mediaId":236
+          },
+          "postschedulerPostPlatformTranslationData":{
+            "data":[
+              {
+                "micId":5,
+                "suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"3",
+                "postPlatformTranslation":{
+                  "region":"all_r",
+                  "language":"all_l",
+                  "title":"the title",
+                  "info":"the info"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":6,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":5,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              },
+              {
+                "micId":5,
+                "suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"4",
+                "postPlatformTranslation":{
+                  "region":"US",
+                  "language":"en",
+                  "title":"the title us",
+                  "info":"the info us"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":8,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":7,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "frequency":1,
+          "postPlatform":{
+            "platformApplicationId":22,
+            "mediaId":236
+          },
+          "postschedulerPostPlatformTranslationData":{
+            "data":[
+              {
+                "micId":5,
+                "suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"5",
+                "postPlatformTranslation":{
+                  "region":"all_r",
+                  "language":"all_l",
+                  "title":"the title",
+                  "info":"the info"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":10,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":9,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              },
+              {
+                "micId":5,"suggestedText":"the suggestedText",
+                "endpointUrl":"the endpointUrl",
+                "lightboxId":"6",
+                "postPlatformTranslation":{
+                  "region":"US",
+                  "language":"en",
+                  "title":"the title us",
+                  "info":"the info us"
+                },
+                "postschedulerPostPlatformTranslationValues":[
+                  {
+                    "id":12,
+                    "ppptdkey":"black",
+                    "ppptdvalue":"bk"
+                  },
+                  {
+                    "id":11,
+                    "ppptdkey":"white",
+                    "ppptdvalue":"wt"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

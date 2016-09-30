@@ -1,0 +1,62 @@
+<div class="dashboardSharedContent">
+	<div class="shared-header">
+		<div class="shared-header-back">
+			<span ui-sref="sharedMainView" class="backBtn">Back</span>
+		</div>
+		<div class="shared-header-strategy">{{platform.strategy}}</div>
+		<div class="shared-header-options">
+			<select ng-model="timeOptions" name="time" class="shared-select">
+				<option value="week">7 Days</option>
+				<option value="month">30 Days</option>
+				<option value="threeMonths">3 Months</option>
+			</select>			
+		</div>
+	</div>
+	<div class="platformStatContainer">
+		<div class="container-fluid">
+			<div class="row">
+				<div ng-show="platform.stats.length === 3" class="col-sm-4" ng-repeat="stat in platform.stats">
+					<div class="platformStatDetail">{{stat}}: </div>
+				</div>
+				<div ng-show="platform.stats.length === 2" class="col-sm-6" ng-repeat="stat in platform.stats">
+					<div class="platformStatDetail">{{stat}}: </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="platform.posts.length > 0" ng-class="platformClasses.PlatformPosts">
+		<div ng-class="platformClasses.PlatformPostContainer" ng-repeat="post in platform.posts">
+			<div ng-class="platformClasses.PlatformPostHolder">
+				<div ng-class="platformClasses.PlatformPost">
+					<div ng-class="platformClasses.PlatformPostHeader">
+						<div ng-class="platformClasses.PlatformPostUserImg">
+							<img src="{{post.userImg}}" />
+						</div>
+						<div ng-class="platformClasses.PlatformPostUserNameContainer">
+							<a ng-class="platformClasses.PlatformPostUserName" href="">{{post.userName}}</a>
+						</div>
+					</div>
+					<div ng-class="platformClasses.PlatformPostText">
+						{{post.postText}}
+					</div>
+					<div ng-class="platformClasses.PlatformPostLink">
+						<img ng-show="post.postImg" ng-class="platformClasses.PlatformPostLinkImg" src="{{post.postImg}}" />
+						<div ng-class="platformClasses.PlatformPostLinkText">
+							<h4>This is a test of the emergency broadcast system.</h4>
+							<p>She's a witch. How do you know that she's a witch? If she weighs as much as a duck.</p>
+						</div>
+					</div>
+				</div>
+				<div ng-class="platformClasses.PlatformPostAnalytics">
+					<div id="{{'postGauge' + stat + $parent.$index}}" ng-class="platformClasses.PlatformThermostatGauge" ng-click="showAnalyticDetails($event, $parent.$index, $index, stat)" ng-repeat="stat in platform.stats"></div>
+				</div>
+			</div>
+			<div id="{{'postAnalyticsContainer' + $index}}" class="platformPostStatsContainer">
+				<div id="{{'postAnalytics' + stat.split('-').join('') + $parent.$index}}" class="platformPostStats" ng-repeat="stat in platform.stats">
+					<div>{{stat}}</div>
+					<div>{{post['newGauge' + $index].config.value}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<div class="directiveHolder">
+    <div class="manageHeader">
+        <h4>Edit '{{templateToEdit.modelDataObject.descName}}':</h4>
+    </div>
+    <div>Edit group posting permission reccomendation suggestion:</div>
+    <form>
+        <input type="radio" name="privatePublic" ng-model="templateToEdit.modelDataObject.groupPostPermissionSuggestion" value="Members, moderators and admins."/>&nbsp;Members, moderators and admins.
+        <br/>
+        <input type="radio" name="privatePublic" ng-model="templateToEdit.modelDataObject.groupPostPermissionSuggestion" value="Admins only"/>&nbsp;Admins Only
+    </form>
+    <br/>
+    <div>Edit instruction text:</div>
+    <summernote ng-model="templateToEdit.modelDataObject.instructionTextHolder"></summernote>
+</div>
+<div class="buttonHolder">
+    <div>
+        <button class="btn btn-outline brand-button-warn" data-dismiss="modal">Close</button>
+        <button class="btn brand-button-success" ng-click="saveCustomizations()()(templateToEdit.modelDataObject.next)">Save</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="directiveHolder">
+	<div class="manageHeader">
+		<h4>Validate Group Instructions:</h4>
+	</div>
+	<hr/>
+	<div class="instructionText">
+		<div ng-bind-html="modalContent.instructionText" class="listTest"></div>
+	</div>
+	<hr/>
+	<div class="manageHeader">
+		<div class="underlineText">Available Facebook Groups:</div>
+	</div>
+	<div ng-show="availableFbGroups.length === 0">
+		No Facebook Groups
+	</div>
+	<form action="">
+		<div ng-show="availableFbGroups.length > 0" ng-repeat="facebookGroup in availableFbGroups">
+			<input type="radio" ng-model="$parent.fbGroupToEdit" ng-value="facebookGroup.id"/>
+			<span class="cursorPointer" ng-click="$parent.fbGroupToEdit = facebookGroup.id">{{facebookGroup.name}}</span>
+		</div>
+	</form>
+</div>
+<div class="buttonHolder2">
+	<div>
+		<button ng-click="previous()()(modalContent.next, modalContent.viewName)" class="btn btn-outline brand-button-warn">Previous</button>
+	</div>
+	<div>
+		<button ng-click="cancel()()()"  class="btn btn-outline brand-button-warn">Close</button>
+		<button ng-disabled="!fbGroupToEdit" ng-click="validateGroup()()(modalContent.next, modalContent.viewName, fbGroupToEdit)" class="btn brand-button-success">Next</button>
+	</div>
+</div>
