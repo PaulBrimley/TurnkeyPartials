@@ -1,8 +1,0 @@
-<li ng-if="product.subs" class="dd-item cursorDefault">
-	<div class="dd-handle dd-nodrag cursorCell" ng-click="expandProductList($event)">{{product.name}}</div>
-	<ol class="dd-list" ng-repeat="product in product.subs" ng-include="'/zf2/assets/posts/html/nestableListTmpl.html'" loop-watcher>
-	</ol>
-</li>
-<li ng-if="!product.subs" class="dd-item cursorPointer">
-	<div class="dd-handle dd-nodrag dd-lastitem" ng-click="connectPostToProduct(product, $event)">{{product.name}}</div>
-</li>
