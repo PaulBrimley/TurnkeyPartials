@@ -1,0 +1,33 @@
+<div class="modalRowHolder" ng-repeat="product in availableProducts" ng-click="addProduct($index)">
+	<div ng-show="content" class="checkbox checkbox-single brand-checkbox-success modalCheckboxPositionOverride">
+	    <input ng-show="content" type="checkbox" ng-model="product.inTemplate" class="checkbox cursorPointer" />
+	    <label></label>
+	</div>
+	<div class="modalRow">
+		<div class="row cursorPointer">
+			<div class="col-sm-6">
+				<img class="contentImg modalImagePositionFix" src="{{product.url}}" alt="">
+			</div>
+			<div class="col-sm-6">
+				<div class="hpanel">
+					<div class="row paddingBottomTen">
+						<div class="col-sm-4">
+							Name:
+						</div>
+						<div class="col-sm-8">
+							{{product.name}}
+						</div>
+					</div>
+					<div class="row paddingBottomTen">
+						<div class="col-sm-4">
+							Description:
+						</div>
+						<div class="col-sm-8">
+							{{product.description}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

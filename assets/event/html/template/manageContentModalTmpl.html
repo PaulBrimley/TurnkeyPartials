@@ -1,0 +1,16 @@
+<div class="modal fade hmodal-success" id="myModal7" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modalTest" >
+                <div class="modalContentBox">
+                    <manage-available-posts class="hpanel" ng-show="modalToDisplay === 'posts'" content="content" available-posts="availablePosts" template-posts="templatePosts"></manage-available-posts>
+                    <manage-available-products class="hpanel" ng-show="modalToDisplay === 'products'" content="content" available-products="availableProducts" template-products="templateProducts"></manage-available-products>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline brand-button-warn" data-dismiss="modal">Close</button>
+                <button ng-show="content" ng-click="submitContent()" type="button" class="btn brand-button-success" data-dismiss="modal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

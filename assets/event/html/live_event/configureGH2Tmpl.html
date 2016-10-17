@@ -1,0 +1,55 @@
+<div class="directiveHolder">
+	<div class="manageHeader">
+		<h4>Register Hangout On Air with SocialMedia Suite:</h4>
+	</div>
+	<!-- <div class="videoWrapper">
+	    <iframe width="560" height="349" src="{{modalContent.videoId}}" frameborder="0" allowfullscreen></iframe>
+	</div> -->
+	<div class="instructionText">
+		<ol>
+		    <li>
+		        After clicking share, you will be viewing your hangouts event page.
+		    </li>
+		    <li>
+		        In the "Details" box, click the <span class="glyphicon glyphicon-link reverse"></span>
+		        Links button.
+		    </li>
+		    <li>
+		        Copy and Paste the three fields (Event page, YouTube page, and Video embed) into the respective "Turnkey Hangout Registration" fields below.
+		    </li>
+		</ol>
+	</div>
+	<hr/>
+	<form class="form-horizontal">
+	    <div class="form-group">
+	        <label class="col-sm-2 control-label">Event Page</label>
+	        <div class="col-sm-10"><input type="text" class="form-control" data-ng-model="hangout.event" placeholder="Event Page"/>
+	        </div>
+	    </div>
+	    <div class="hr-line-dashed"></div>
+
+	    <div class="form-group">
+	        <label class="col-sm-2 control-label">Youtube Page</label>
+	        <div class="col-sm-10"><input type="text" class="form-control" data-ng-model="hangout.youtube" placeholder="Youtube Page"/></div>
+	    </div>
+	    <div class="hr-line-dashed"></div>
+
+	    <div class="form-group">
+	        <label class="col-sm-2 control-label">Video Embed</label>
+	        <div class="col-sm-10"><input type="text" class="form-control" data-ng-model="hangout.videoEmbed" placeholder="Video Embed"/></div>
+	    </div>
+	</form>
+
+	<!-- <div class="instructionActionLink">
+		<a class="btn btn-warning" href="">Action Link here</a>
+	</div> -->
+</div>
+<div class="buttonHolder2">
+	<div>
+		<button ng-click="previous()('configureGHStep1')" class="btn btn-outline brand-button-warn">Previous</button>
+	</div>
+	<div>
+		<button class="btn btn-outline brand-button-warn" data-dismiss="modal">Close</button>
+		<button ng-click="submit()()" type="button" class="btn brand-button-success">Done</button>
+	</div>
+</div>

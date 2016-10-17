@@ -1,0 +1,27 @@
+<div class="dashboard-panel-header-image shared-background"></div>
+<div class="dashboardSharedContent">
+	<div class="shared-header">
+		<div class="shared-header-options">
+			<select ng-model="timeOptions" name="time" class="shared-select">
+				<option value="week">7 Days</option>
+				<option value="month">30 Days</option>
+				<option value="threeMonths">3 Months</option>
+			</select>			
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 platform" ng-click="transitionTo(platform.strategy)" ng-repeat="platform in platformStrategies">
+				<div class="platformHeader">
+					{{platform.strategy}}
+				</div>
+				<div class="platformStats">
+					<div ng-repeat="stat in platform.stats">
+						<!-- <div>{{stat}}:</div> -->
+						<div id="{{platform.strategy + stat}}" class="platformThermostatGauge"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<?php
+    $this->headScript()
+        ->appendFile($this->basePath('/zf2/assets/profiles/js/manageProfileCtrl.js'));
+    $this->headLink()
+        ->prependStylesheet($this->basePath('/zf2/assets/payments/css/creditCardInfoPartialStyles.css'))
+        ->prependStylesheet($this->basePath('/zf2/assets/profiles/css/manageProfiles.css'));
+?>
+
+
+<div ng-app="manageProfiles">
+    <div ng-controller="manageProfilesCtrl">
+        <div ng-include="'/zf2/assets/profiles/html/main.html'"></div>
+    </div>
+</div>

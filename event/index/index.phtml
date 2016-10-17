@@ -1,0 +1,187 @@
+<?php
+    $this->headScript()
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/virtualEventCtrl.js'))
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/videoDirectives.js'))
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/virtualEventDirectives.js'))
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/videoSvc.js'))
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/aws-sdk-dynamodb.js'))
+        ->appendFile($this->basePath('/zf2/assets/event/js/event/virtualEventSvc.js'));
+    $this->headLink()
+        ->prependStylesheet($this->basePath('/zf2/assets/event/css/virtualEvent.css'))
+        ->appendStylesheet("/homer/bower_components/fontawesome/css/font-awesome.css");
+
+    //One directive that is required: messageDirectiveTmpl.html
+        echo '<script>';
+    echo 'var sessionObject = ' . $this->sessionObject . ';';
+    echo 'var userId = ' . $this->userId . ';';
+    echo 'var userName = \'' . $this->userName . '\';';
+    echo 'var liveEventId = ' . $this->liveEventId . ';';
+    echo 'var sessionId = ' . $this->sessionId . ';';
+    echo 'var videoId = \'' . $this->videoId . '\';';
+    echo 'var companyView = \'' . 'default' . '\';';
+    if($this->isAdmin){
+        echo 'var isAdmin = ' . $this->isAdmin . ';';
+    } else{
+        echo 'var isAdmin = false;';
+    }
+    echo '</script>';
+?>
+
+
+<div ng-app="eventPlanner">
+	<div class="page2" ng-controller="virtualEventCtrl">
+
+		<div class="modal fade hmodal-success" id="myModal13" tabindex="-1" role="dialog" aria-hidden="true">
+	        <div class="modal-dialog modal-sm">
+                <div class="bagModalBody">
+                    <div class="bagModalHeading">
+                        Added to your bag
+                    </div>
+                    <div class="bagModalProduct" ng-repeat="product in cart">
+                        <div class="bagModalProductImgDesc">
+                            <div class="bagModalProductImg" style="background-image: url({{product.url}})">
+                            </div>
+                            <div class="bagModalProductDesc">
+                                <div class="bagModalProductName">{{product.name}}</div>
+                            </div>
+                        </div>
+                        <div class="bagModalProductQtyDelPrice">
+                            <div class="bagModalProductQty">
+                                Qty <input class="bagModalProductQtyInsideInput" type="text" ng-model="product.quantity" ng-change="updateProductQuantity(product)"/>
+                            </div>
+                            <div class="bagModalProductDel" ng-click="removeProduct(product)">
+                                <svg class="bagModalProductDelInside" width="9" height="9">
+                                            <path d="M0 0 L9 9" stroke="#d4d6d8"/>
+                                            <path d="M9 0 L0 9" stroke="#d4d6d8"/>
+                                </svg>
+                                Delete
+                            </div>
+                            <div class="bagModalProductPrice">
+                                ${{product.total | number:2}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bagModalFooter">
+                    <div class="bagTotals">
+                        <div>{{cartCount}} item<span ng-show="cartCount > 1">s</span> in bag</div>
+                        <div>Subtotal: ${{cartTotal | number:2}}</div>
+                    </div>
+                    <div class="bagModalFooterButtons">
+                        <div class="quinaryBtn" data-dismiss="modal">RETURN TO VIDEO</div>
+                        <div class="quaternaryBtn" ng-click="checkout()">CHECKOUT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <youtube-event class="videoWrapper" video-id="{{videoId}}" player="player" company-view="companyView"></youtube-event>
+        <?php
+            if(!$this->showProducts && !$this->isAdmin){
+                echo '<div style="display:none">';
+            }
+        ?>
+
+        <default-products
+            ng-show="companyView === 'default'"
+            add-product-to-cart="addProductToCart"
+            add-product-to-session="addProductToSession"
+            cart-count="cartCount"
+            checkout="checkout"
+            current-product="currentProduct"
+            is-admin="isAdmin"
+            possible-products="possibleProducts"
+            product-quantity="productQuantity"
+            session="session"
+            set-current-product="setCurrentProduct"
+            show-bag="showBag">
+        </default-products>
+
+        <drop-zone-products
+            ng-show="companyView === 'dropZone'"
+            add-product-to-cart="addProductToCart"
+            add-product-to-session="addProductToSession"
+            cart-count="cartCount"
+            checkout="checkout"
+            current-product="currentProduct"
+            is-admin="isAdmin"
+            possible-products="possibleProducts"
+            product-quantity="productQuantity"
+            session="session"
+            set-current-product="setCurrentProduct"
+            show-bag="showBag">
+        </drop-zone-products>
+
+        <?php
+            if(!$this->showProducts && !$this->isAdmin){
+                echo '</div>';
+            }
+        ?>
+
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="questionPanel1">
+					<div class="questionPanelHeader">Questions?</div>
+					<form ng-submit="sendMessage()">
+						<input ng-disabled="disableInput" class="questionPanelInput" type="text" placeholder="{{placeholder}}" ng-model="newMessage"/>
+					</form>
+				</div>
+				<div class="questionPanel2">
+					<div class="questionPanelCategoryInstructions">
+						Select a category for your comment
+					</div>
+					<div ng-show="session.categories.length === 0">Loading Categories</div>
+					<div ng-show="session.categories.length > 0" class="questionPanelCategoryBtnHolder" ng-repeat="category in session.categories | orderBy: 'entryId'">
+						<div id="{{'categoryBtn' + $index}}" ng-class="{secondaryBtn: !category.active, tertiaryBtn: category.active}" ng-click="changeCategory(category.id)">
+							<div ng-if="category.id !== '-99999' && isAdmin" id="{{'categoryCounter' + $index}}" class="questionPanelCategoryCommentCounter">
+								{{session.messages.Grouped[category.id].viewCount}}
+							</div>
+							{{category.entryValue}}
+						</div>
+					</div>
+				</div>
+				<div class="questionPanelFooter">
+					<div class="postBtn" ng-click="sendMessage()">POST</div>
+				</div>
+			</div>
+		</div>
+
+
+        <div ng-show="session.messages.All.length > 0" class="v-timeline vertical-container animate-panel" ng-class="{'v-timeline-width-single-override': (session.messages.All.length <= 1), 'v-timeline-width-override': (session.messages.All.length > 1)}" data-child="vertical-timeline-block" data-delay="1">
+            <div >
+                <div ng-if="currentCategory === '-99999'" class="vertical-timeline-block" ng-repeat="message in session.messages.All | orderBy: '-timeStamp'">
+                    <div class="vertical-timeline-icon vertical-timeline-icon-override-message">
+                        <div class="blackDiamondMessageTime">
+                            <svg class="" width="100" height="100">
+                                <polygon class="blackDiamond" points="20,10 9.5,20 0,10"/>
+                            </svg>
+                        </div>
+                        <span class="messageTime" am-time-ago="message.timeStamp"></span>
+                    </div>
+                    <div class="vertical-timeline-content">
+                        <div class="p-sm">
+                            <div class="messageUser">{{message.userName}}</div>
+                          <div class="messageMessage">{{message.message}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="currentCategory !== '-99999'" class="vertical-timeline-block" ng-repeat="message in session.messages.Grouped[currentCategory].messages | orderBy: '-timeStamp'">
+                    <div class="vertical-timeline-icon vertical-timeline-icon-override-message">
+                        <div class="blackDiamondMessageTime">
+                            <svg class="" width="100" height="100">
+                                <polygon class="blackDiamond" points="20,10 9.5,20 0,10"/>
+                            </svg>
+                        </div>
+                        <span class="messageTime" am-time-ago="message.timeStamp"></span>
+                    </div>
+                    <div class="vertical-timeline-content">
+                        <div class="p-sm">
+                            <div class="messageUser">{{message.userName}}</div>
+                            <div class="messageMessage">{{message.message}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

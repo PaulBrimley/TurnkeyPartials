@@ -1,0 +1,23 @@
+<div class="dashboard-panel-header-image calendar-background"></div>
+<div class="dashboardCalendarContent">
+	<div class="dashboard-calendar-view">
+		<div ui-calendar="uiConfig.calendar" ng-model="eventTest" calendar="myCalendar1" id="calendar1"></div>
+	</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<img src="{{currentEvent.imageurl}}" alt="" width="25" height="25"/>
+        <p>Title: {{currentEvent.title}}</p>
+      </div>
+      <div class="modal-body">
+        <p>Start time: {{currentEvent.start}}</p>
+        <p>Id: {{currentEvent.id}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearCurrentEvent()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

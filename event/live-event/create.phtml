@@ -1,0 +1,189 @@
+<?php
+$this->headScript()
+    ->appendFile($this->basePath('/zf2/assets/event/js/event/liveEventCreateCtrl.js'));
+
+$this->headLink()
+    ->prependStylesheet($this->basePath('/zf2/assets/event/css/createLiveEvent.css'));
+?>
+<div ng-app="eventPlanner">
+    <div ng-controller="liveEventCreateCtrl">
+        <div class="modal fade hmodal-success" id="myModal8" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body modalTest">
+                        <div class="panel-header">
+                            Select from these available administrators:
+                        </div>
+                        <div class="modalContentBox">
+                            <div class="hpanel">
+                                <div ng-show="availableAdmins.length === 0">
+                                    No administrators available with that name.
+                                </div>
+                                <div ng-show="availableAdmins.length > 0">
+                                    <div class="eventAdminSearchRow" ng-repeat="admin in availableAdmins">
+                                        <div class="eventAdminSearchRowAdminSelect">
+                                            <div class="checkbox checkbox-single brand-checkbox-success modalCheckboxPositionOverride">
+                                                <input class="cursorPointer" type="checkbox" ng-model="admin.selected" ng-click="selectAdminCheckbox(admin)"/>
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                        <div class="eventAdminSearchRowAdmin" ng-click="selectAdmin(admin)">
+                                            {{admin.name}}
+                                        </div>
+                                        <div class="eventAdminSearchRowRoles">
+                                            <div class="row" ng-repeat="role in event.roleArray">
+                                                <div class="checkbox checkbox-single brand-checkbox-success modalCheckboxPositionOverride">
+                                                    <input class="cursorPointer" ng-model="admin.roles[role.label]" type="checkbox" ng-click="roleCheckboxSelected(admin)">
+                                                    <label ng-click="roleSelected(admin, role)">{{role.label}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="closeModal()" class="btn btn-outline brand-button-warn">Close</button>
+                        <button ng-show="availableAdmins.length > 0" ng-click="closeModal()" class="btn brand-button-success">Update Admins</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page greyBackground">
+            <div class="eventHeader">
+                <h2 class="blackText">Create an Event</h2>
+                <p>Create and edit your virtual event.</p>
+            </div>
+            <div class="contentContainer">
+                <div class="hpanel">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel-body">
+                                <form id="templateCreate" ng-submit="saveEvent()">
+                                    <div class="row paddingBottomTen">
+                                        <div class="col-sm-2 rightAlignHolder textAlignRight paddingTopFive">Event Name</div>
+                                        <div class="col-sm-10"><input ng-model="event.name" class="form-control" type="text" placeholder="Event name here"/></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2 rightAlignHolder textAlignRight paddingTopFive">Event Discription</div>
+                                        <div class="col-sm-10"><input type="text" ng-model="event.description" class="form-control" placeholder="Enter a brief description of your event" /></div>
+                                    </div>
+                                    <hr class="outlinedLine"/>
+
+                                    <div class="row">
+                                        <div class="col-sm-2 rightAlignHolder textAlignRight paddingTopFive">Event Date</div>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+
+                                                <div class="col-md-12 col-lg-4 halfWidthHolder">
+                                                    <div class="input-group" id="datepicker">
+                                                        <input id="datepicker1" type="text" class="form-control" ng-model="dayHolder">
+                                                        <div class="input-group-addon btn" onclick="showDatepicker()">
+                                                            <span class="glyphicon glyphicon-th"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-4 halfWidthHolder">
+                                                    <div class="input-group bootstrap-timepicker timepicker">
+                                                        <input id="timepicker1" type="text" class="form-control input-small"/>
+                                                        <div class="input-group-addon btn" onclick="showTimepicker()">
+                                                            <i class="glyphicon glyphicon-time"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-4 halfWidthHolder">
+                                                    <select ng-options="item as item.value for item in availableTimeZones" ng-model="event.timeZone" class="form-control input-small">
+                                                        <option value="" disabled selected>Select Time Zone</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-sm-2 rightAlignHolder textAlignRight">Who Can Join?</div>
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="group in event.groups">
+                                                <div class="checkbox checkbox-single checkbox-success checkboxMarginTopOverride checkboxMarginBottomOverride" >
+                                                    <input ng-model="group.selected" type="checkbox" class="i-checks">
+                                                    <label ng-click="group.selected = !group.selected">{{group.label}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="outlinedLine"/>
+                                </form>
+                                    
+                                <form id="adminSearch" ng-submit="searchName()">
+                                    <div class="row">
+                                        <div class="col-sm-2 rightAlignHolder textAlignRight paddingTopFive">Add Administrators</div>
+                                        <div class="col-sm-10">
+                                            <div class="input-group">
+                                                <input id="nameSearchInput" ng-model="nameToSearch" type="text" placeholder="{{nameSearchPlaceholder}}" class="form-control" required name="name"/>
+                                                <span class="input-group-btn" >
+                                                    <button class="btn brand-button-success" type="submit">Search</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div ng-show="event.administrators.length == 0" class="col-sm-4 col-md-4 col-lg-3">
+                        <div class="hpanel hgreen">
+                            <div class="panel-body">
+                                No administrators selected
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="event.administrators.length > 0" id="{{'adminHolder' + $index}}" class="col-sm-4 col-md-4 col-lg-3" ng-repeat="admin in event.administrators track by $index">
+                        <div class="hpanel hgreen">
+                            <div class="panel-body">
+                                <div class="eventAdminImg">
+                                    <img src="{{admin.userImg}}" alt="">
+                                </div>
+                                <br/>
+                                <div class="eventAdminName">{{admin.name}}</div>
+                                <div ng-repeat="role in admin.role">
+                                    <div class="eventAdminRoles">{{role.label}}</div>
+                                </div>
+                               <!--  <div class="paddingTopFive eventAdminDescription">This should be a description area. We could put a whole load of stuff here to tell everyone what a cool person this is!</div> -->
+                                <br/>
+                                <button class="btn btn-outline brand-button-fail eventAdminBtn" ng-click="removeAdmin($index)">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contentFooter-fixed">
+                    <button class="btn brand-button-success" ng-click="saveEvent()">Save Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- To Detect Bootstrap Breakpoints -->
+<div class="device-xs visible-xs"></div>
+<div class="device-sm visible-sm"></div>
+<div class="device-md visible-md"></div>
+<div class="device-lg visible-lg"></div>
+<!-- -->
+<script>
+    var showDatepicker = function () {
+        $('#datepicker1').datepicker('show');
+        $('#datepicker1').focus();
+    }
+
+    var showTimepicker = function () {
+        $('#timepicker1').timepicker('showWidget');
+        $('#timepicker1').focus();
+    }
+</script>

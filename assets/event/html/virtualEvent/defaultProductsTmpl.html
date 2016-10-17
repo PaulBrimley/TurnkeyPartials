@@ -1,0 +1,105 @@
+<div class="row marginBottomTen">
+	<div class="col-sm-7">
+		<div class="prodPanelHeader">
+			<div class="leftHeader">
+				<div class="prodName">
+					{{currentProduct.entryValue}}
+					<span ng-show="currentProduct.price > 0" class="prodPrice">${{currentProduct.price | number:2}}</span>
+				</div>
+			</div>
+			<div class="rightHeader">
+				<div>QTY</div>
+				<div class="prodQtyHolder">
+					<select class="prodQty" ng-model="productQuantity">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+				<div class="primaryBtn" ng-click="addProductToCart()(currentProduct)">ADD TO BAG</div>
+			</div>
+		</div>
+		<div class="prodPanelBody">
+			<div class="row">
+				<div class="col-xs-5 ">
+					<div class="currentProductImage" style="background-image: url({{currentProduct.url}})">
+					</div>
+				</div>
+				<div class="col-xs-7">
+					<div class="currentProductDescription">
+						<div class="prodentryValue1">{{currentProduct.entryValue}}</div>
+						<div ng-show="currentProduct.price > 0" class="prodPrice1">${{currentProduct.price | number:2}}</div>
+						<div class="prodDesc">{{currentProduct.description}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="prodVerticalLineContainer">
+			<svg class="" width="23" height="300">
+				<path class="prodVerticalLine" d="M10 1 L10 299" />
+			</svg>
+		</div>
+		<div class="prodPanelHeader">
+			<div class="blackDiamondHeader">
+				<svg class="" width="23" height="23">
+					<polygon class="blackDiamond" points="19,10 9,19 0,10"/>
+				</svg>
+			</div>
+			<div class="leftHeader">
+				<div class="prodFeatured">FEATURED</div>
+			</div>
+			<div class="rightHeader">
+				<div class="prodBagLabel">BAG</div>
+				<div class="prodBag cursorPointer" ng-click="showBag()()">
+					<div class="prodCartCount">{{cartCount}}</div>
+					<img class="prodBagImg" src="/StaticContent/Event/img/shopping_cart.png" alt=""/>
+				</div>
+				<div class="primaryBtn" ng-click="checkout()()">CHECKOUT</div>
+				<span ng-show="isAdmin && possibleProducts.length > 0" class="adminMenu">
+					<i id="adminMenuHolder" class="fa fa-plus cursorPointer" aria-hidden="true"></i>
+					<div class="adminMenuContent">
+						<div class="addProductMenu">
+							<div class="adminMenuItem">Add Product</div>
+							<div class="addProductMenuContent">
+								<div class="addProductMenuItem" ng-repeat="product in possibleProducts" ng-click="addProductToSession()(product)">{{product.name}}</div>
+							</div>
+						</div>
+					</div>
+				</span>
+			</div>
+		</div>
+		<div class="prodPanelBody2">
+			<div ng-show="session.products.length === 0" class="productContainer">
+				<div class="productContainer1">
+				</div>
+				<div class="productContainer3">
+					No Products Added
+				</div>
+			</div>
+			<div ng-show="session.products.length > 0" class="productContainer" ng-repeat="product in session.products track by $index " ng-click="setCurrentProduct()(product)">
+				<div class="productContainer1">
+					<div class="prodCircle"></div>
+				</div>
+				<div class="productContainer2">
+					<img src="{{product.url}}" alt="">
+				</div>
+				<div class="productContainer3">
+					<div class="prodName2">{{product.entryValue}}</div>
+					<div class="prodPrice2">${{product.price | number:2}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="prodPanelFooter">
+			<div class="blackDiamondFooter">
+				<svg class="" width="23" height="23">
+					<polygon class="blackDiamond" points="9,1 19,10 0,10"/>
+				</svg>
+			</div>
+		</div>
+	</div>
+</div>

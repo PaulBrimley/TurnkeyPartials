@@ -1,0 +1,363 @@
+.attendeeImgHolder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.attendeeImg {
+	width: 50%;
+	min-width: 80px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.attendeeImg img {
+	width: 100%;
+}
+
+.attendeeLocation {
+	text-align: center;
+	font-size: .8em;
+	font-weight: 300;
+}
+
+.attendeeName {
+	text-align: center;
+	font-weight: 500;
+}
+
+.editBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	background: #ff0000;
+	color: #fff;
+	padding: 2px 4px;
+	border-radius: 2px;
+	font-size: .8em;
+	cursor: pointer;
+}
+
+.editBtn:active {
+	background: #dd0000;
+}
+
+.eventDate {
+	/*color: #8c8f93;*/
+	color: #c2c3c8;
+	margin-bottom: 30px;
+}
+
+.eventGroupInfo {
+	display: flex;
+}
+
+.eventGroupInfo1 {
+
+}
+
+.eventGroupInfo2 {
+	flex: 1;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.eventHosts {
+	color: #dcdcdc;
+	margin-bottom: 10px;
+}
+
+.eventHostsHeader {
+	color: #8c8f93;
+	margin-bottom: 3px;
+}
+
+.eventImg {
+	width: 100%;
+}
+
+.eventMemberImg {
+	height: 60px;
+}
+
+.eventMemberImg img {
+	height: 100%;
+}
+
+.eventMemberName {
+	height: 20px;
+	display: flex;
+	align-items: center;
+}
+
+#eventMembers {
+	overflow-y: auto;
+}
+
+.eventName {
+	color: #dcdcdc;
+	font-size: 1.5em;
+}
+
+.eventOverviewPanel {
+	display: flex;
+}
+
+.eventOverviewPanel1 {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} 
+
+.eventOverviewPanel2 {
+	width: 50%;
+	background: #000;
+	padding: 40px 30px;
+} 
+
+.eventPostPlaceholder {
+	min-height: 150px !important;
+}
+
+.eventUrl {
+	color: #dcdcdc;
+	word-wrap: break-word;
+}
+
+.eventUrlHeader {
+	color: #8c8f93;
+	margin-bottom: 3px;
+}
+
+.icon-checkmark {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	opacity: 0;
+	color: #fff;
+}
+
+.icon-dot-holder {
+	position: relative;
+	cursor: pointer;
+}
+
+.icon-dot {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 90%;
+	height: 90%;
+  background: #dadada;
+  border-radius: 50%;
+}
+
+.icon-dot2 {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 90%;
+	height: 90%;
+  border-radius: 50%;
+}
+
+.icon-dot-none {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 90%;
+	height: 90%;
+  background: #dadada;
+  border-radius: 50%;
+}
+
+.icon-dot-holder:hover .icon-dot {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 90%;
+	height: 90%;
+  background: #3c9ada;
+  border-radius: 50%;
+}
+
+.icon-dot-holder:hover .icon-dot2 {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 90%;
+	height: 90%;
+  background: #3c9ada;
+  border-radius: 50%;
+}
+
+.icon-dot-holder:hover .icon-calendar {
+	color: #fff;
+}
+
+.icon-dot-holder:hover .icon-checkmark {
+	opacity: 1;
+}
+
+.modalPlatformImg {
+	display: inline-block;
+	width: 50px;
+	opacity: 0.3;
+}
+
+.modalPlatformSubmitBtn {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.orangeBorderOverride {
+	border: 1px solid #ffb606 !important;
+}
+
+.orangeColor {
+	color: #ffb606;
+}
+
+.postComment {
+	margin-bottom: 6px;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.postDesc {
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: -0.24px;
+}
+
+.postHolder {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	border: rgba(0, 0, 0, 0.231373), rgba(0, 0, 0, 0.14902), rgba(0, 0, 0, 0.0980392);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 1px 4px rgba(0, 0, 0, .1);
+}
+
+.postHolder:hover .removeBtnHolder {
+	opacity: 1;
+}
+
+.postHolderOutside {
+	padding: 10px;
+	font-family: 'lucida grande','tahoma','verdana','arial','sans-serif';
+	color: rgb(29, 33, 41);
+}
+
+.postImgHolder {
+
+}
+
+.postImg {
+	width: 100%;
+}
+
+.postInformation {
+	padding: 10px;
+	overflow-y: auto;
+}
+
+.postInformation::-webkit-scrollbar {
+    width: 0px;
+}
+
+.prodInformationInside {
+	height: 100%;
+}
+
+.postTabs {
+	max-width: 100px;
+}
+
+.postBody {
+	padding: 0 !important;
+	background: #f4f4f4 !important;
+	border: none !important;
+}
+
+.postTimeSelectors {
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.postTitle {
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 500;
+	font-family: 'Georgia', 'lucida grande','tahoma','verdana','arial','sans-serif';
+}
+
+.postTimeSelectorUnderline {
+	display: inline-block;
+	border-radius: 5px;
+	height: 10px;
+	margin: 3px 0 0 -3px;
+	background-color: #c20022;
+	color: transparent;
+}
+
+.postTimeSelectorUnderline:hover {
+	background-color: #681a1a;
+}
+
+.removeBtn {
+	cursor: pointer;
+	color: #d5d5d5;
+}
+
+.removeBtnHolder {
+	padding: 1px;
+	position: absolute;
+	font-size: 1.5em;
+	top: -10px;
+	right: -4px;
+	opacity: 0;
+	transition: opacity 500ms;
+}
+
+
+@media only screen and (max-width : 480px) {
+	.eventOverviewPanel {
+		flex-direction: column;
+	}
+
+	.eventOverviewPanel1 {
+		width: 100%;
+	} 
+
+	.eventOverviewPanel2 {
+		width: 100%;
+	} 
+
+	.postHolder {
+		flex-direction: column;
+	}
+
+	.postImgHolder {
+		width: 100%;
+	}
+
+	.postInformation {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width : 400px) {
+	.postTimeSelectors {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.modalPlatformSubmitBtn {
+		justify-content: center;
+	}
+}
